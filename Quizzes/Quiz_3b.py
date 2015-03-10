@@ -212,3 +212,105 @@ f.set_canvas_background("Blue")
 # start animation
 f.start()
 
+# A modified code version of question 8
+
+import simplegui
+
+# global state
+iteration = 0
+current = 217
+lst = []
+
+# helper functions
+
+def init(current):
+    """Initializes n."""
+    print "Input is", current
+    
+def sequence(current):
+    """Sequence generation rule."""
+    if current % 2 == 0:
+        return current / 2
+    else:
+        return current * 3 + 1
+
+# timer callback
+
+def update():
+    global iteration, current
+    iteration += 1
+    # Stop iterating if sequence becomes 1
+    if current == 1:
+        timer.stop()
+        print "Last output is", current
+    else:
+        current = sequence(current)
+        #print current
+        lst.append(current)
+        print lst
+    print "Max element: " +  str(max(lst))   
+# register event handlers
+timer = simplegui.create_timer(1, update)
+
+# start program
+init(current)
+timer.start()
+
+# result
+"""
+Input is 217
+[652]
+Max element: 652
+[652, 326]
+Max element: 652
+[652, 326, 163]
+Max element: 652
+[652, 326, 163, 490]
+Max element: 652
+[652, 326, 163, 490, 245]
+Max element: 652
+[652, 326, 163, 490, 245, 736]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184, 92]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184, 92, 46]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184, 92, 46, 23]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184, 92, 46, 23, 70]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184, 92, 46, 23, 70, 35]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184, 92, 46, 23, 70, 35, 106]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184, 92, 46, 23, 70, 35, 106, 53]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184, 92, 46, 23, 70, 35, 106, 53, 160]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184, 92, 46, 23, 70, 35, 106, 53, 160, 80]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184, 92, 46, 23, 70, 35, 106, 53, 160, 80, 40]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184, 92, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184, 92, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184, 92, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184, 92, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5, 16]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184, 92, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5, 16, 8]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184, 92, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5, 16, 8, 4]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184, 92, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5, 16, 8, 4, 2]
+Max element: 736
+[652, 326, 163, 490, 245, 736, 368, 184, 92, 46, 23, 70, 35, 106, 53, 160, 80, 40, 20, 10, 5, 16, 8, 4, 2, 1]
+Max element: 736
+Last output is 1
+Max element: 736
+"""
